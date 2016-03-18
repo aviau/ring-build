@@ -72,7 +72,7 @@ RUN cd lrc && \
         mkdir build && \
         cd build && \
         cmake  \
-            -DRING_BUILD_DIR=$(CURDIR)/daemon/src \
+            -DRING_BUILD_DIR=/ring-project/daemon/src \
             -DCMAKE_INSTALL_PREFIX=/usr \
             -DENABLE_VIDEO=true \
             ..
@@ -83,7 +83,7 @@ RUN cd client-gnome && \
         cd build && \
         cmake \
             -DCMAKE_INSTALL_PREFIX=/usr \
-            -DLibRingClient_DIR=$(CURDIR)/lrc \
+            -DLibRingClient_DIR=/ring-project/lrc \
             ..
 
 # daemon build
