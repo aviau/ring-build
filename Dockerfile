@@ -77,13 +77,16 @@ RUN cd lrc && \
             -DENABLE_VIDEO=true \
             ..
 
+
 # gnome client configure
+ADD gnome/CMakeLists.txt /ring-project/client-gnome/CMakeLists.txt
+ADD gnome/FindLibRingClient.cmake /ring-project/client-gnome/cmake/FindLibRingClient.cmake
 RUN cd client-gnome && \
         mkdir build && \
         cd build && \
         cmake \
             -DCMAKE_INSTALL_PREFIX=/usr \
-            -DLibRingClient_DIR=/ring-project/lrc \
+            -DLibRingClient_SRC_DIR=/ring-project/lrc/src \
             ..
 
 # daemon build
