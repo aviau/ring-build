@@ -50,6 +50,7 @@ RUN apt-get update && apt-get install -y git \
 
 RUN git clone --recursive https://github.com/savoirfairelinux/ring-project.git /ring-project
 WORKDIR /ring-project
+RUN cd client-gnome && git fetch https://gerrit-ring.savoirfairelinux.com/ring-lrc refs/changes/87/3887/6 && git checkout FETCH_HEAD
 
 # Daemon configure
 RUN mkdir -p daemon/contrib/native
