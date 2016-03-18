@@ -48,7 +48,7 @@ RUN apt-get update && apt-get install -y git \
     uuid-dev \
     libudev-dev
 
-RUN git clone --recursive git@github.com:savoirfairelinux/ring-project.git /ring-project
+RUN git clone --recursive https://github.com/savoirfairelinux/ring-project.git /ring-project
 WORKDIR /ring-project
 
 # Daemon configure
