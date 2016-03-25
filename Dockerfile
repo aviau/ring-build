@@ -48,8 +48,12 @@ RUN apt-get update && apt-get install -y git \
     uuid-dev \
     libudev-dev
 
-RUN git clone --recursive https://github.com/savoirfairelinux/ring-project.git /ring-project
+RUN mkdir /ring-project
 WORKDIR /ring-project
+RUN git clone --recursive https://github.com/savoirfairelinux/ring-daemon.git daemon
+RUN git clone --recursive https://github.com/savoirfairelinux/ring-lrc.git lrc
+RUN git clone --recursive https://github.com/savoirfairelinux/ring-client-gnome.git client-gnome
+RUN cd client-gnome && git fetch https://gerrit-ring.savoirfairelinux.com/ring-client-gnome refs/changes/86/3886/15 && git checkout FETCH_HEAD
 
 # Daemon configure
 RUN mkdir -p daemon/contrib/native
@@ -77,13 +81,14 @@ RUN cd lrc && \
             -DENABLE_VIDEO=true \
             ..
 
+
 # gnome client configure
 RUN cd client-gnome && \
         mkdir build && \
         cd build && \
         cmake \
             -DCMAKE_INSTALL_PREFIX=/usr \
-            -DLibRingClient_DIR=/ring-project/lrc \
+            -DLibRingClient_PROJECT_DIR=/ring-project/lrc \
             ..
 
 # daemon build
