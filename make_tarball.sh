@@ -24,9 +24,9 @@ rm -rf native
 
 # Create tarball
 cd $tmp/ring-project
-date=`git log -1 --format=%cd --date=short` # YYYY-MM-DD
-numbercommits=`git log --date=short | grep -c $date` # number of commits that day
-dateshort=`echo $date | sed -s 's/-//g'` # YYYYMMDD
+lastcommitdate=`git log -1 --format=%cd --date=short` # YYYY-MM-DD
+numbercommits=`git log --format=%cd --date=short | grep -c $lastcommitdate` # number of commits that day
+dateshort=`echo $lastcommitdate | sed -s 's/-//g'` # YYYYMMDD
 commitid=`git rev-parse --short HEAD` # last commit id
 
 cd $tmp
