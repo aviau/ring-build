@@ -18,7 +18,7 @@ cd $tmp/ring-project/daemon/contrib
 mkdir native
 cd native
 ../bootstrap
-make fetch
+make fetch-all
 cd ..
 rm -rf native
 
