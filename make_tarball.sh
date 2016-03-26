@@ -5,7 +5,7 @@ tmp=`mktemp -d`
 cd $tmp
 
 # Download
-git clone --recursive https://github.com/savoirfairelinux/ring-project.git
+git clone --recursive https://gerrit-ring.savoirfairelinux.com/ring-project
 
 # Update repositories
 # TODO: remove this, ring-project should be up-to-date
@@ -23,8 +23,14 @@ cd ..
 rm -rf native
 
 # Create tarball
+cd $tmp/ring-project
+date=`git log -1 --format=%cd --date=short` # YYYY-MM-DD
+numbercommits=`git log --date=short | grep -c $date` # number of commits that day
+dateshort=`echo $date | sed -s 's/-//g'` # YYYYMMDD
+commitid=`git rev-parse --short HEAD` # last commit id
+
 cd $tmp
-tar --exclude-vcs -zcf ring_20170301.0.git5cc051d.tar.gz ring-project
+tar --exclude-vcs -zcf ring_$dateshort.$numbercommits.$commitid.tar.gz ring-project
 rm -rf ring-project
 
 # Move tarball to original dir
