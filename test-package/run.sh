@@ -10,7 +10,7 @@ docker run -it \
     --device /dev/video0 \
     -e DISPLAY=unix$DISPLAY \
     --name ring-test-package \
-    debian:jessie \
+    debian:unstable \
     /bin/bash -c "dpkg -i /tmp/ring.deb; \
                   apt-get update && \
                   apt-get -fy install && \
